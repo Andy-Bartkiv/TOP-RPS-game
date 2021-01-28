@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPS Game for TOP</title>
+</head>
+<body>
+    <button id="Run">Run</button>
+    <script>
+        function compPlay() {
+            let res ='';
+            switch(Math.floor(Math.random() * 3) + 1) {
+                case 1: res = 'Rock'; break;
+                case 2: res = 'Paper'; break;
+                case 3: res = 'Scissors'; break;
+                default: res = 'NOT GOOD at all'
+            }
+            return res;
+        }
+
+        function oneRound(playerSelect, compSelect) {
+            let res = '';
+            switch(playerSelect.toLowerCase()) {
+                case 'rock': 
+                    if (compSelect === 'Rock') {res = 'It \'s a draw!'
+                    } else if (compSelect === 'Paper') {res = 'You loose!'
+                    } else if (compSelect === 'Scissors') {res = 'You WIN!'}
+                    break;
+                case 'paper': 
+                    if (compSelect === 'Rock') res = 'You WIN!';
+                    else if (compSelect === 'Paper') res = 'It \'s a draw!';
+                    else if (compSelect === 'Scissors') res = 'You loose!';
+                    break;
+                case 'scissors': 
+                    if (compSelect === 'Rock') res = 'You loose!';
+                    else if (compSelect === 'Paper') res = 'You WIN!'
+                    else if (compSelect === 'Scissors') res = 'It \'s a draw!';
+                    break;
+            }
+            return `You: ${playerSelect}, Comp: ${compSelect} ... ` + res;
+        }
+
+        
+        
+        document.getElementById("Run").onclick = function() {
+            for (i = 1; i < 11; i++) console.log(i + ' ' + oneRound('Scissors',compPlay()));
+            console.log('- - - THE END - - - ')
+        };
+
+    </script>
+</body>
+</html>
