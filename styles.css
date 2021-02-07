@@ -1,6 +1,26 @@
 /* CSS for Rock Paper Scissors Game */
 
-/* First comment at UI-DESIGN branch*/
 body {
     background-color: bisque;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#container > *{
+    padding: 10px;
+}
+
+#round-res {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content {
+    align-content: center;
+    text-justify: center;
 }
