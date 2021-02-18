@@ -1,20 +1,103 @@
 /* CSS for Rock Paper Scissors Game */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: bisque;
 }
 
-#container {
+:root {
+    font-size: 5vmin;
+    --bgd-color: #1e1e1e;
+    --bgd-color-light: #2e2e2e;
+    --prm-color: #e1e1e1;
+    --sec-color: #b0b0b0;
+}
+
+/*To PREVENT DIV-TEXT SELECTION by Mouse at the Page*/
+div {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.hand {
+    font-size: 2.5rem;
+    background-color: var(--bgd-color-light);
+    color: orangered;
+    border: 2px solid orangered;
+    border-radius: 10px;
+    width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.party {
+    font-size: 0.8rem;
+    padding: 10px;
+    align-self: flex-start;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    height: 50%;
+    flex: 0.2;
 }
 
-#container > *{
-    padding: 10px;
+#container {
+    margin: auto;
+    padding: 0.25rem;
+    background-color: var(--bgd-color);
+    color: orangered;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+      min-width: 100vmin;
+      max-width: 125vmin;
+      height: 100vmin;    
+    border-radius: 10px;
+}
+
+#container > div {
+    border: 2px solid orangered;
+    border-radius: 10px;
+    padding: 0.25rem;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#central {
+    display: flex;
+    justify-content:space-between;
+    align-items: stretch;
+    flex: 0.95;
+}
+
+#central > div {
+    border: 1px solid var(--sec-color);
+    border-radius: 10px;
+    padding: 0.25;
 }
 
 #round-res {
+    flex: 0.5;
+    font-size: 0.75rem;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,4 +106,34 @@ body {
 .content {
     align-content: center;
     text-justify: center;
+}
+
+#buttons {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#but-restart {
+    padding: 20px 10px;
+    font-size: 1rem;
+    background-color: var(--bgd-color-light);
+    color: orangered;
+    border: 2px solid orangered;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 640px) {
+    :root {
+        font-size: 32px;
+    }
+    
+    #container {
+        min-width: 640px;
+        min-height: 640px;
+    }
 }

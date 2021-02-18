@@ -7,20 +7,30 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id = "container">
-        <div>
-            <button id="but-restart">RESTART GAME</button>
+    <div id = "container">     
+ 
+        <div id="header">ROCK - SCISSORS - PAPER</div>
+        
+        <div id="central">
+            <div class="party">
+                <div>PLAYER</div>
+                <div class="hand" id="player">R</div>
+            </div>
+            <div id="round-res">5 : 5</div>
+            <div class="party" id="comp">
+                <div>COMP</div>
+                <div class="hand" id="player"></div>
+            </div>
         </div>
 
         <div id='buttons'>
-            <button class ='play-buttons'id="Rock">Rock</button>
-            <button class ='play-buttons'id="Paper">Paper</button>
-            <button class ='play-buttons'id="Scissors">Scissors</button>
+            <div class='play-buttons hand' id="Rock">R</div>
+            <div class='play-buttons hand' id="Scissors">S</div>
+            <div class='play-buttons hand' id="Paper">P</div>          
         </div>
-    
-        <div>YOU_____vs_____COMP</div>
-        <div id="round-res"></div>
-    
+
+        <div id="but-restart">RESTART GAME</div>
+
     </div>
 
     <script src="game.js"></script>
