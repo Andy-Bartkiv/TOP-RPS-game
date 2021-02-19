@@ -19,25 +19,43 @@ function restartGame() {
     console.log('RESTART');
     const del = [...document.querySelectorAll('.content')];
     del.forEach(e => results.removeChild(e));
-    buttons.forEach(but => but.disabled = false);
+    toggleElement('buttons', "flex")
+    toggleElement("but-restart","flex")
+    document.getElementById("player").textContent = "?";
+    document.getElementById("comp").textContent = "?";
     score = [0,0,0];
+    document.getElementById('comp-score').textContent = score[2];
+    document.getElementById('player-score').textContent = score[1];
 };
 
 function playRound(humSel, compSel) {
+    console.log(humSel, compSel);
+    let humI = "..."; let cmpI = "...";
+    document.getElementById("player").textContent = humSel[0];
+    document.getElementById("comp").textContent = compSel[0];
     score[0]++;
     switch(whoWins(humSel,compSel)) {
         case 'D':             break;
-        case 'W': score[1]++; break;
-        case 'L': score[2]++; break;
+        case 'W': 
+            score[1]++;
+            document.getElementById('player-score').textContent = score[1];
+            humI = "...";
+            break;
+        case 'L': 
+            score[2]++;
+            document.getElementById('comp-score').textContent = score[2];
+            cmpI = "...";
+            break;
         default: score[0] = 'ERROR';
     }
     
     const content = document.createElement('div');
     content.classList.add('content');
-    content.textContent = `Round ${score[0]} ->  ${humSel} ${score[1]} : ${score[2]} ${compSel} `;
+    content.textContent = `${humSel[0]} ${humI} ${score[1]} : ${score[2]} ${cmpI} ${compSel[0]} `;
     results.appendChild(content);
 
-    update(5);
+
+    update(3);
 }
 
 function update(maxScore) {
@@ -45,8 +63,18 @@ function update(maxScore) {
     if (score[1] >= maxScore) winner = "H"
     else if (score[2] >= maxScore) winner = "C";
     if (winner) {
-        buttons.forEach(but => but.disabled = true);
-        alert('THE END \n' + ((winner === "H") ? "!You Win!" : "You Loose"));
+        toggleElement('buttons', "flex")
+        toggleElement("but-restart","flex")
+        // alert('THE END \n' + ((winner === "H") ? "!You Win!" : "You Loose"));
+    }
+}
+
+function toggleElement(id, styleDisplay) {
+    let el = document.getElementById(id);
+    if (el.style.display === "none") {
+        el.style.display = styleDisplay;
+    } else {
+        el.style.display = "none";
     }
 }
 
@@ -62,5 +90,6 @@ butRestart.addEventListener('click', restartGame);
 buttons.forEach(but => { 
     but.addEventListener('click', () => {
         playRound(but.id, compPlay())
+        console.log(score)
     })
 });

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPS Game for TOP</title>
+    <title>tOP: Rock-Scissors-Paper Game</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,22 +14,26 @@
         <div id="central">
             <div class="party">
                 <div>PLAYER</div>
-                <div class="hand" id="player">R</div>
+                <div class="hand" id="player">?</div>
+                <div class="score" id="player-score">0</div>
             </div>
-            <div id="round-res">5 : 5</div>
-            <div class="party" id="comp">
+            <div id="round-res">
+
+            </div>
+            <div class="party">
                 <div>COMP</div>
-                <div class="hand" id="player"></div>
+                <div class="hand" id="comp">?</div>
+                <div class="score" id="comp-score">0</div>
             </div>
         </div>
 
-        <div id='buttons'>
+        <div id='buttons' style="display: flex;">
             <div class='play-buttons hand' id="Rock">R</div>
             <div class='play-buttons hand' id="Scissors">S</div>
             <div class='play-buttons hand' id="Paper">P</div>          
         </div>
 
-        <div id="but-restart">RESTART GAME</div>
+        <div id="but-restart" style="display: none;">RESTART GAME</div>
 
     </div>
 
