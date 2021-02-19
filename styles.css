@@ -50,9 +50,27 @@ div {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: none;
+    transition: box-shadow 0.5s;
+}
+
+.party .hand {
+    transition: 1s;
+}
+
+.play-buttons.hand:hover {
+    box-shadow:
+        0 0px 20px orangered,
+        0 0px 80px orangered;
+}
+
+.play-buttons.hand:active {
+    transform: translateY(3px);
 }
 
 .shining-winner {
+    background-color: orangered;
+    color: var(--bgd-color-light);
 }
 
 .party > div {
@@ -136,6 +154,13 @@ div {
     /* display: flex; */
     align-items: center;
     justify-content: center;
+    transition: box-shadow 0.5s;
+}
+
+#but-restart:hover {
+    box-shadow:
+        0 0px 20px orangered,
+        0 0px 80px orangered;
 }
 
 @media (max-width: 640px) {
