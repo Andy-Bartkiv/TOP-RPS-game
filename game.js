@@ -16,46 +16,46 @@ function whoWins(playerSelect, compSelect) {
 }
 
 function restartGame() {
-    console.log('RESTART');
     const del = [...document.querySelectorAll('.content')];
     del.forEach(e => results.removeChild(e));
-    toggleElement('buttons', "flex")
-    toggleElement("but-restart","flex")
+    hideShowElementById('buttons', "show");
+    hideShowElementById("but-restart", "hide")
     document.getElementById("player").textContent = "?";
+    document.getElementById("player").classList.remove("shining-winner");
     document.getElementById("comp").textContent = "?";
+    document.getElementById("comp").classList.remove("shining-winner");
     score = [0,0,0];
     document.getElementById('comp-score').textContent = score[2];
     document.getElementById('player-score').textContent = score[1];
 };
 
 function playRound(humSel, compSel) {
-    console.log(humSel, compSel);
-    let humI = "..."; let cmpI = "...";
+    document.getElementById("player").classList.remove("shining-winner");
     document.getElementById("player").textContent = humSel[0];
+    document.getElementById("comp").classList.remove("shining-winner");
     document.getElementById("comp").textContent = compSel[0];
-    score[0]++;
+    score[0]++; // counting Game Rounds
     switch(whoWins(humSel,compSel)) {
         case 'D':             break;
         case 'W': 
             score[1]++;
             document.getElementById('player-score').textContent = score[1];
-            humI = "...";
+            document.getElementById("player").classList.add("shining-winner");
             break;
         case 'L': 
             score[2]++;
             document.getElementById('comp-score').textContent = score[2];
-            cmpI = "...";
+            document.getElementById("comp").classList.add("shining-winner");
             break;
-        default: score[0] = 'ERROR';
+        default: score[0] = 'ERROR'; //Just in Case...
     }
     
     const content = document.createElement('div');
     content.classList.add('content');
-    content.textContent = `${humSel[0]} ${humI} ${score[1]} : ${score[2]} ${cmpI} ${compSel[0]} `;
+    content.textContent = `${humSel[0]} ... ${score[1]} : ${score[2]} ... ${compSel[0]} `;
     results.appendChild(content);
 
-
-    update(3);
+    update(maxScore); // Cheking for Game End Condition
 }
 
 function update(maxScore) {
@@ -63,33 +63,35 @@ function update(maxScore) {
     if (score[1] >= maxScore) winner = "H"
     else if (score[2] >= maxScore) winner = "C";
     if (winner) {
-        toggleElement('buttons', "flex")
-        toggleElement("but-restart","flex")
-        // alert('THE END \n' + ((winner === "H") ? "!You Win!" : "You Loose"));
+        hideShowElementById('buttons', "hide");
+        hideShowElementById("but-restart","show")
     }
 }
 
-function toggleElement(id, styleDisplay) {
-    let el = document.getElementById(id);
-    if (el.style.display === "none") {
-        el.style.display = styleDisplay;
-    } else {
-        el.style.display = "none";
-    }
+function hideShowElementById(id, command) {
+    if (command === 'hide')
+        document.getElementById(id).classList.add('btn-hide');
+    else
+        document.getElementById(id).classList.remove('btn-hide');
 }
+// ---------------------------------------
+// - - - End of Function Declaraions - - -
+//----------------------------------------
 
-let score = [0,0,0];
+let score = [0,0,0]; // Game Score Arr
+const maxScore = 3; // Score to win the game
 
 const buttons = [...document.querySelectorAll('.play-buttons')]
 
 const results = document.querySelector('#round-res');
 
-const butRestart = document.querySelector('#but-restart')
-butRestart.addEventListener('click', restartGame);
+restartGame();
 
 buttons.forEach(but => { 
     but.addEventListener('click', () => {
         playRound(but.id, compPlay())
-        console.log(score)
     })
 });
+
+const butRestart = document.querySelector('#but-restart')
+butRestart.addEventListener('click', restartGame);
