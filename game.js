@@ -1,3 +1,11 @@
+function transformIcons(input) {
+    return {
+        R: `<i class="far fa-hand-rock"></i>`,
+        S: `<i class="far fa-hand-peace"></i>`,
+        P: `<i class="far fa-hand-paper"></i>`
+    }[input]
+}
+
 function compPlay() {
     return {
         1: "Rock",
@@ -31,9 +39,9 @@ function restartGame() {
 
 function playRound(humSel, compSel) {
     document.getElementById("player").classList.remove("shining-winner");
-    document.getElementById("player").textContent = humSel[0];
+    document.getElementById("player").innerHTML = transformIcons(humSel[0]);
     document.getElementById("comp").classList.remove("shining-winner");
-    document.getElementById("comp").textContent = compSel[0];
+    document.getElementById("comp").innerHTML = transformIcons(compSel[0]);
     score[0]++; // counting Game Rounds
     switch(whoWins(humSel,compSel)) {
         case 'D':             break;
